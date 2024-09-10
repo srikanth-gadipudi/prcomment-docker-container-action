@@ -4,8 +4,13 @@ inputs:
   GITHUB_TOKEN:
     description: 'GitHub token'
     required: true
+  giphy_api_key:
+    description: 'Giphy API key'
+    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  args:
+    - ${{ inputs.giphy_api_key }}
   env:
     GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}

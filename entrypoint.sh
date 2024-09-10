@@ -2,11 +2,12 @@
 
 set -e
 
-# Define the GIFs array
-GIFS=("https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif" "https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" "https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif")
+# Get the Giphy API key from the input argument
+GIPHY_API_KEY=$1
 
-# Select a random GIF
-RANDOM_GIF=${GIFS[$RANDOM % ${#GIFS[@]}]}
+# Get a random "thank you" GIF from Giphy
+GIPHY_RESPONSE=$(curl -s "https://api.giphy.com/v1/gifs/random?api_key=${GIPHY_API_KEY}&tag=thank+you&rating=g")
+RANDOM_GIF=$(echo $GIPHY_RESPONSE | jq --raw-output .data.images.original.url)
 
 # Create the comment
 COMMENT="![Thank you](${RANDOM_GIF})\n\nThanks for the contribution!"
