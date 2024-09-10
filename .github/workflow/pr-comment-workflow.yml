@@ -1,0 +1,21 @@
+name: 'PR Comment with Thank You GIF'
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  
+  comment:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-request: write
+      actions: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Post a random thank you GIF comment
+        uses: ./
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

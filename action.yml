@@ -1,0 +1,11 @@
+name: 'PR Comment with Thank You GIF'
+description: 'Comments a random thank you GIF on a PR when it is opened'
+inputs:
+  GITHUB_TOKEN:
+    description: 'GitHub token'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
